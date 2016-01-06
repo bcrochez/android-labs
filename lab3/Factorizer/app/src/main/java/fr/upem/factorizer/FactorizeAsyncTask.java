@@ -23,6 +23,7 @@ public class FactorizeAsyncTask extends AsyncTask<Long, Long, List<Long>> {
                 factors.add(i);
                 number /= i;
             }
+            publishProgress(limit, i);
         }
         if (number > 1) {
             factors.add(number);

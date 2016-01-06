@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Factorizer</string>
+    <string name="title_activity_factorization_result">FactorizationResultActivity</string>
 </resources>

@@ -15,7 +15,14 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
         <service android:name=".FactorizationService"/>
+
+        <activity
+            android:name=".FactorizationResultActivity"
+            android:label="@string/title_activity_factorization_result"
+            android:theme="@style/AppTheme">
+        </activity>
     </application>
 
 </manifest>
