@@ -8,8 +8,9 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private double startTime = 0;
-    private double endTime = 0;
+    private static long DELAY = 100;
+    private long startTime = 0;
+    private long endTime = 0;
     private boolean isStarted = false;
 
     @Override
@@ -51,6 +52,16 @@ public class MainActivity extends AppCompatActivity {
                 resetChrono();
             }
         });
+
+        final Runnable refresh = new Runnable() {
+            @Override
+            public void run() {
+                updateChrono(elapsedTime);
+                elapsedTime.postDelayed(this, DELAY);
+            }
+        };
+        elapsedTime.postDelayed(refresh, DELAY);
+
     }
 
     private void startChrono(TextView tv) {
@@ -70,9 +81,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateChrono(TextView tv) {
         if(isStarted) {
-            tv.setText(Double.toString((System.nanoTime() - startTime)/1000000000.));
+            tv.setText(Long.toString((System.nanoTime() - startTime)/1000000000));
         } else {
-            tv.setText(Double.toString(endTime/1000000000.));
+            tv.setText(Long.toString(endTime/1000000000));
         }
     }
 
