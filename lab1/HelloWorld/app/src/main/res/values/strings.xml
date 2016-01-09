@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">HelloWorld</string>
+
+    <string name="hello_world">Hello world !</string>
+    <string name="clic">Clic !</string>
+    <string name="launch">Lancer</string>
+</resources>
