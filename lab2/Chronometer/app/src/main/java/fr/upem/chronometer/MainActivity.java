@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final MyClockView mcv = (MyClockView) findViewById(R.id.my_clock);
-        //final TextView elapsedTime = (TextView) findViewById(R.id.elapse_time);
 
         Button startBtn = (Button) findViewById(R.id.start);
         Button stopBtn = (Button) findViewById(R.id.stop);
@@ -29,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startChrono(mcv);
+                startChrono();
             }
         });
 
@@ -58,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 updateChrono(mcv);
+                mcv.invalidate();
                 mcv.postDelayed(this, DELAY);
             }
         };
@@ -65,11 +64,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void startChrono(MyClockView myClockView) {
+    private void startChrono() {
         if(!isStarted) {
             startTime = System.nanoTime();
             isStarted = true;
-            updateChrono(myClockView);
+            //updateChrono(myClockView);
         }
     }
 
@@ -82,11 +81,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateChrono(MyClockView mcv) {
         if(isStarted) {
-            //tv.setText(Long.toString((System.nanoTime() - startTime)/1000000000));
-            mcv.setElapsedTime((int) (System.nanoTime() - startTime)/1000000000);
+            mcv.setElapsedTime(System.nanoTime() - startTime);
         } else {
-            //tv.setText(Long.toString(endTime/1000000000));
-            mcv.setElapsedTime((int) endTime/1000000000);
+            mcv.setElapsedTime(endTime);
         }
     }
 
