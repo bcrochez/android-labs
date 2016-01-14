@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Andyams</string>
+    <string name="throwDice">Throw Dice</string>
+    <string name="gameOver">Game Over</string>
+    <string name="newGame">New Game</string>
+</resources>
